@@ -1,18 +1,33 @@
 var puzzleArr = document.querySelectorAll('.puzzle');
 
-var puzzleNumber = 0;
+var randomArr = getRandomArray();
+console.log(getRandomArray())
 for (var i = 0; i < 4; i++) {
     for (var j = 0; j < 4; j++) {
+        
         if (i==3 && j==3) break;
-        puzzleArr[puzzleNumber].style.left = j * 100 % 400 + 'px';
-        puzzleArr[puzzleNumber].style.top = i * 100 % 400 + 'px';
-        puzzleNumber++;
+        var puzzle = document.getElementById(randomArr[4 * i + j])
+        puzzle.style.left = j * 100 % 400 + 'px';
+        puzzle.style.top = i * 100 % 400 + 'px';
+       
+    }
+}
+
+
+for (var i = 0; i < 4; i++) {
+    for (var j = 0; j < 4; j++) {
+        
+        if (i==3 && j==3) break;
+        var puzzle = document.getElementById(randomArr[4 * i + j])
+        puzzle.style.left = j * 100 % 400 + 'px';
+        puzzle.style.top = i * 100 % 400 + 'px';
+       
     }
 }
 
 
 var base = document.getElementById('base');
-document.body.style.overflow = 'hidden';
+//document.body.style.overflow = 'hidden';
 
 document.onmousedown = function(e) {
     e.target.style.transition = '0s'
@@ -36,11 +51,12 @@ document.onmousedown = function(e) {
     
     var clientLeftEdge = getCoords(base).left + base.clientLeft - getCoords(dragElem).left;
     var clientTopEdge = getCoords(base).top + base.clientTop - getCoords(dragElem).top;
-    console.log(clientTopEdge);
+    console.log(clientLeftEdge + ',' + clientTopEdge)
     
     //блок на элементе "в полете"
-    if (clientLeftEdge % 100 || clientTopEdge % 100) return; 
+    if (Math.round(clientLeftEdge) % 100 || Math.round(clientTopEdge) % 100) return; 
     
+    //dragElem.style.position = 'fixed';
     dragElem.style.zIndex = 1000;
     
     document.body.appendChild(dragElem);
@@ -48,7 +64,6 @@ document.onmousedown = function(e) {
 
     function moveAt(e) {
       dragElem.style.left = e.pageX - shiftX + 'px';
-      // console.log(dragElem.style.left)
       dragElem.style.top = e.pageY - shiftY + 'px';
     }
     
@@ -154,6 +169,13 @@ document.onmousedown = function(e) {
 }
 }
 
+function getRandomArray() {
+    return [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].sort(randSort); 
+}
+
+function randSort() {
+    return Math.random() - 0.5;
+}
 
 
 function getCoords(elem) {   // кроме IE8-
