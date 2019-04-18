@@ -39,3 +39,7 @@ h2 {
     font: 40px/1.5 monospace;
     
 }
+
+.puzzle:hover {
+    cursor: pointer;
+}
