@@ -5,5 +5,7 @@ if ('serviceWorker' in navigator) {
     }).catch(function(error) {
       // регистрация прошла неудачно
       console.log('Registration failed with 2 ' + error);
-    });
-  };
+    }) 
+  }else {
+    console.log('No service-worker on this browser');
+  }
