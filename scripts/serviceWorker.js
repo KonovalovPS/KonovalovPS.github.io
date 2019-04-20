@@ -9,3 +9,13 @@ if ('serviceWorker' in navigator) {
   }else {
     console.log('No service-worker on this browser');
   }
+
+  this.addEventListener('install', function(event) {
+    event.waitUntil(
+      caches.open('v1').then(function(cache) {
+        return cache.addAll([
+          '/'
+        ]);
+      })
+    );
+  });
