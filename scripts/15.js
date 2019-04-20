@@ -1,7 +1,6 @@
 var puzzleArr = document.querySelectorAll('.puzzle');
 
 var randomArr = getRandomArray();
-console.log(getRandomArray())
 for (var i = 0; i < 4; i++) {
     for (var j = 0; j < 4; j++) {
         
@@ -24,7 +23,6 @@ for (var i = 0; i < 4; i++) {
        
     }
 }
-
 
 var base = document.getElementById('base');
 //document.body.style.overflow = 'hidden';
@@ -37,10 +35,7 @@ document.onmousedown = function(e) {
     var dragElem = e.target;
     
     var direction = getAllowedDirection();
-    if (!direction) return;  //клик на заблокированный пазл
-    
-    
-    
+    if (!direction) return;  //клик на заблокированный пазл   
     
     if(!dragElem.classList.contains('puzzle')) return;
     
@@ -51,7 +46,6 @@ document.onmousedown = function(e) {
     
     var clientLeftEdge = getCoords(base).left + base.clientLeft - getCoords(dragElem).left;
     var clientTopEdge = getCoords(base).top + base.clientTop - getCoords(dragElem).top;
-    console.log(clientLeftEdge + ',' + clientTopEdge)
     
     //блок на элементе "в полете"
     if (Math.round(clientLeftEdge) % 100 || Math.round(clientTopEdge) % 100) return; 
