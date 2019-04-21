@@ -1,5 +1,5 @@
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/scripts/serviceWorker.js').then(function(reg) {
+    navigator.serviceWorker.register('/serviceWorker.js').then(function(reg) {
       // регистрация сработала
       console.log('Registration succeeded. Scope is ' + reg.scope);
     }).catch(function(error) {
@@ -14,8 +14,7 @@ if ('serviceWorker' in navigator) {
     event.waitUntil(
       caches.open('v1').then(function(cache) {
         return cache.addAll([
-          '/index.html',
-          ''
+          '/index.html'
         ]);
       })
     );
