@@ -10,6 +10,7 @@ if ('serviceWorker' in navigator) {
     this.addEventListener('install', function(event) {
       event.waitUntil(
         caches.open('v1').then(function(cache) {
+          console.log('caching...')
           return cache.addAll([
             '/index.html'
           ]);
@@ -18,6 +19,7 @@ if ('serviceWorker' in navigator) {
     });
   
     this.addEventListener('fetch', function(event) {
+      console.log('fetching...')
       event.respondWith(
         caches.match(event.request)
       );
