@@ -12,7 +12,8 @@ if ('serviceWorker' in navigator) {
         caches.open('v1').then(function(cache) {
           console.log('caching...')
           return cache.addAll([
-            '/index.html'
+            '/index.html',
+            '/'
           ]);
         })
       );
